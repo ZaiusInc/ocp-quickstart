@@ -1,6 +1,90 @@
 sections:
-  - key: instructions
-    label: Instructions
+  - key: credentials
+    label: Azure Access Credentials
     elements:
-    - type: instructions
-      text: Design your settings form in this file. See the [forms documentation](https://docs.developers.optimizely.com/digital-experience-platform/v1.5.0-optimizely-data-platform/docs/forms#settingsyml) for details.
+      - type: instructions
+        text: Enter your Azure credentials for this app to be able to register an Azure Event Subscription that listens for Azure Storage Events.
+      - type: text
+        key: clientId
+        label: Azure Client ID
+        help: This is the client ID the app will use to access Azure.
+        required: true
+        validations:
+          - regex: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            message: Must be a UUID
+      - type: text
+        key: tenantId
+        label: Azure Tenant ID
+        help: Tenant ID to allow access for.
+        required: true
+        validations:
+          - regex: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            message: Must be a UUID
+      - type: text
+        key: subscriptionId
+        label: Azure Subscription
+        help: Azure Subscription.
+        required: true
+        validations:
+          - regex: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            message: Must be a UUID
+      - type: secret
+        key: clientSecret
+        label: Client Secret
+        help: Client Secret.
+        required: true
+      - type: button
+        action: save_credentials
+        label: Save
+        help: Validate and Save Settings.
+        style: primary
+        disabled:
+          operation: any
+          comparators:
+            - key: clientId
+              empty: true
+            - key: tenantId
+              empty: true
+            - key: clientSecret
+              empty: true
+  - key: settings
+    label: Setup Azure Storage information.
+    elements:
+      - type: instructions
+        text: Enter the Azure Storage Blob settings.
+      - type: text
+        key: resourceGroup
+        required: true
+        label: Resource Group Name
+        help: The name of the resource group that the event subscription will be set up in.
+      - type: text
+        key: accountName
+        required: true
+        label: Storage Account Name
+        help: The name of the Storage Account to register the event subscription for.
+      - type: text
+        key: orderContainer
+        required: true
+        label: Container Name for Orders
+        help: The name of the container where the order data will be uploaded to.
+      - type: text
+        key: offlineStoreContainer
+        required: true
+        label: Container Name for Offline Stores
+        help: The name of the container where offline store data will be stored.
+      - type: button
+        action: save_settings
+        label: Save Settings
+        help: Validate Settings
+        style: primary
+        disabled:
+          operation: any
+          comparators:
+            - key: resourceGroup
+              empty: true
+            - key: accountName
+              empty: true
+            - key: orderContainer
+              empty: true
+            - key: offlineStoreContainer
+              empty: true

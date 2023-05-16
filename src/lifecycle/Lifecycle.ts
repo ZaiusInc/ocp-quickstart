@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as App from '@zaiusinc/app-sdk';
 import {logger, storage} from '@zaiusinc/app-sdk';
+import {Credentials, StorageAccountSettings} from '../data/Azure';
+import {Azure} from '../lib/Azure/Azure';
 
 export class Lifecycle extends App.Lifecycle {
   public async onInstall(): Promise<App.LifecycleResult> {
@@ -15,15 +17,47 @@ export class Lifecycle extends App.Lifecycle {
   }
 
   public async onSettingsForm(
-    section: string, action: string, formData: App.SubmittedFormData
-  ): Promise<App.LifecycleSettingsResult> {
+    section: string, action: string, formData: App.SubmittedFormData): Promise<App.LifecycleSettingsResult> {
     const result = new App.LifecycleSettingsResult();
     try {
-      // TODO: any logic you need to perform when a setup form section is submitted
-      // When you are finished, save the form data to the settings store
-      await storage.settings.put(section, formData);
+      switch (action) {
+      case 'save_credentials':
+        logger.info('Validating Credentials');
+        const credential = {
+          clientId: formData.clientId,
+          tenantId: formData.tenantId,
+          clientSecret: formData.clientSecret,
+          subscriptionId: formData.subscriptionId,
+        } as Credentials;
+
+        if (await Azure.validateCredentials(credential)) {
+          logger.info('Storing Settings');
+          await storage.settings.put('credentials', credential);
+          result.addToast('success', 'Credentials have been successfully validated and stored.');
+          result.redirectToSettings('settings');
+        } else {
+          result.addToast(
+            'danger',
+            'Validation of the provided credentials failed. Check your credentials and try again.'
+          );
+        }
+        break;
+      case 'save_settings':
+        logger.info('Saving settings');
+        const settings = {
+          accountName: formData.accountName,
+          resourceGroup: formData.resourceGroup,
+          orderContainer: formData.orderContainer,
+          offlineStoreContainer: formData.offlineStoreContainer
+        } as StorageAccountSettings;
+
+        await storage.settings.put('settings', settings);
+        result.addToast('success', 'Settings have been successfully stored.');
+        break;
+      }
       return result;
     } catch (e) {
+      logger.error('Error during setup', e);
       return result.addToast('danger', 'Sorry, an unexpected error occurred. Please try again in a moment.');
     }
   }
