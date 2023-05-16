@@ -1,0 +1,13 @@
+name: orders
+fields:
+  - name: ocp_quickstart_offline_store_id
+    type: string
+    display_name: OCP Quickstart Order Offline Store ID
+    description: The Quickstart Offline Store this Order originated from
+relations:
+  - name: ocp_quickstart_offline_store
+    display_name: OCP Quickstart Offline Store
+    child_object: ocp_quickstart_offline_stores
+    join_fields:
+      - parent: ocp_quickstart_offline_store_id
+        child: ocp_quickstart_offline_store_id

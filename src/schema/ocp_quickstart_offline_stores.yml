@@ -1,0 +1,16 @@
+name: ocp_quickstart_offline_stores
+display_name: OCP Quickstart Offline Stores
+fields:
+  - name: ocp_quickstart_offline_store_id
+    type: string
+    display_name: OCP Quickstart Offline Store ID
+    description: ID of the Offline Store
+    primary: true
+  - name: ocp_quickstart_offline_store_name
+    type: string
+    display_name: OCP Quickstart Offline Store Name
+    description: The name of the Offline Store
+  - name: ocp_quickstart_offline_store_location
+    type: string
+    display_name: OCP Quickstart Offline Store Location
+    description: Where the Offline Store is located

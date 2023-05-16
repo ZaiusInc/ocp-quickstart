@@ -1,0 +1,45 @@
+{
+  "name": "ocp_quickstart_app",
+  "version": "1.0.0-dev.1",
+  "main": "dist/index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "yarn && npx rimraf remove dist && npx tsc && npx ncp app.yml dist/app.yml && npx fse mkdirp src/schema && npx fse copy src/schema dist/schema",
+    "validate": "yarn build && yarn lint && yarn test && npx cross-env LOG_LEVEL=never node node_modules/@zaiusinc/app-sdk/dist/app/validation/runValidation.js",
+    "lint": "npx eslint src --ext ts",
+    "test": "npx jest --passWithNoTests"
+  },
+  "devDependencies": {
+    "@atao60/fse-cli": "^0.1.7",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^18.7.13",
+    "@types/node-fetch": "^2.6.2",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/eslint-plugin-tslint": "^5.35.1",
+    "@zaiusinc/eslint-config-presets": "^1.0.0",
+    "eslint": "^8.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.0.1",
+    "eslint-plugin-jsdoc": "^39.3.6",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-react": "^7.31.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "chalk": "^4.0.0",
+    "jest": "^28.1.3",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^28.0.8",
+    "tslint": "^5.14.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@zaiusinc/app-sdk": "^1.2.4",
+    "@zaiusinc/node-sdk": "^1.0.0",
+    "node-fetch": "^2.6.7"
+  },
+  "resolutions": {
+    "grpc-boom": "^3.0.11"
+  }
+}
+

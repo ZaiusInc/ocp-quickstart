@@ -1,0 +1,10 @@
+name: customers
+identifiers:
+  - name: ocp_quickstart_clubcard_id
+    display_name: OCP Quickstart Clubcard ID
+    merge_confidence: high
+fields:
+  - name: ocp_quickstart_clubcard_creation_date
+    type: timestamp
+    display_name: OCP Quickstart Clubcard Creation Date
+    description: Creation date of this Customer's Clubcard
