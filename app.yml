@@ -1,7 +1,7 @@
 meta:
   app_id: ocp_quickstart
   display_name: OCP Quickstart
-  version: 1.0.0-dev.3
+  version: 1.0.0-dev.4
   vendor: optimizely
   summary: Sync offline store orders and customer data into ODP
   support_url: https://www.acme.com/
@@ -12,6 +12,12 @@ meta:
     - us
 
 runtime: node18
+
+jobs:
+  offline_store_import:
+    entry_point: OfflineStoreImportJob
+    description: Import offline stores from Azure Storage Account
+    cron: 0 0 6 * * ?
 
 functions:
   storage_event:

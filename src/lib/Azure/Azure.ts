@@ -4,6 +4,7 @@ import { ClientSecretCredential } from '@azure/identity';
 import { EventGridManagementClient, EventSubscription } from '@azure/arm-eventgrid';
 import { AzureOrderInfoClient } from './OrderInfoClient';
 import { BlobServiceClient } from '@azure/storage-blob';
+import {AzureOfflineStoreClient} from './OfflineStoreClient';
 
 export namespace Azure {
   export async function validateCredentials(credentials: Credentials) {
@@ -72,4 +73,16 @@ export namespace Azure {
 
     return true;
   }
+
+  export async function createOfflineStoreClient() {
+    const credentials = await storage.settings.get<Credentials>('credentials');
+    if (!await validateCredentials(credentials)) {
+      logger.error('Invalid credentials.');
+      throw new Error('Invalid Azure credentials.');
+    }
+    const settings = await storage.settings.get<StorageAccountSettings>('settings');
+
+    return new AzureOfflineStoreClient(credentials, settings);
+  }
+
 }

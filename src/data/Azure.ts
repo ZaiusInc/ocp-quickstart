@@ -13,3 +13,8 @@ export interface StorageAccountSettings extends ValueHash {
   orderContainer: string;
   offlineStoreContainer: string;
 }
+
+export interface StorageFile extends ValueHash {
+  name: string;
+  lastModified: number;
+}
