@@ -1,7 +1,7 @@
 meta:
   app_id: ocp_quickstart
   display_name: OCP Quickstart
-  version: 1.0.0-dev.2
+  version: 1.0.0-dev.3
   vendor: optimizely
   summary: Sync offline store orders and customer data into ODP
   support_url: https://www.acme.com/
@@ -12,3 +12,8 @@ meta:
     - us
 
 runtime: node18
+
+functions:
+  storage_event:
+    entry_point: StorageEventHandler
+    description: Handles events received from Azure EventGrid.

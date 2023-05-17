@@ -43,7 +43,7 @@ export class Lifecycle extends App.Lifecycle {
         }
         break;
       case 'save_settings':
-        logger.info('Saving settings');
+        logger.info('Saving settings and registering Webhook');
         const settings = {
           accountName: formData.accountName,
           resourceGroup: formData.resourceGroup,
@@ -51,8 +51,12 @@ export class Lifecycle extends App.Lifecycle {
           offlineStoreContainer: formData.offlineStoreContainer
         } as StorageAccountSettings;
 
-        await storage.settings.put('settings', settings);
-        result.addToast('success', 'Settings have been successfully stored.');
+        if (await Azure.installWebhook(settings)) {
+          await storage.settings.put('settings', settings);
+          result.addToast('success', 'Settings and Webhook have been successfully stored.');
+        } else {
+          result.addToast('danger', 'Storing of settings and Webhook has failed. Check your settings and try again.');
+        }
         break;
       }
       return result;
