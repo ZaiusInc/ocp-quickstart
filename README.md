@@ -10,7 +10,7 @@ then run `yarn` to install dependencies.
 Apps should be written in [TypeScript](https://www.typescriptlang.org/).
 [Visual Studio Code](https://code.visualstudio.com/) is a great free IDE for typescript projects.
 
-Finally, check out the [documentation](https://docs.developers.optimizely.com/digital-experience-platform/v1.5.0-optimizely-data-platform/docs/optimizely-connect-platform)
+Finally, check out the [documentation](https://docs.developers.optimizely.com/optimizely-connect-platform/docs)
 
 ## Build and test
 
