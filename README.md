@@ -4,7 +4,7 @@ Build a sample app from start to finish in Optimizely Connect Platform (OCP) tha
 
 This repository contains the source code for the app that you build in the OCP [Quickstart: Build an app](https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-quickstart-overview) guide. To build the app, follow each page of the quickstart guide in order:
 1. [Overview](https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-quickstart-overview)
-2. [Scaffold the app and define its schema](https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-quickstart-scaffold-an-app)
+2. [Scaffold the app and define the schema](https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-quickstart-scaffold-an-app)
 3. [Publish to the ODP sandbox](https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-quickstart-publish-an-app-to-odp-sandbox)
 4. [Configure and authenticate the app](https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-quickstart-config-and-authenticate)
 5. [Write a function](https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-quickstart-write-a-function)
