@@ -64,11 +64,14 @@ export class StorageEventHandler extends App.Function {
           order: {
             order_id: blob.order_id,
             total: blob.price_total,
-            product_id: blob.product_id,
-            ocp_quickstart_offline_store_id: blob.offline_store_id
-          },
-          product: {
-            product_id: blob.product_id
+            ocp_quickstart_offline_store_id: blob.offline_store_id,
+            items: blob.items.map((item) => ({
+              product_id: item.product_id,
+              price: item.price,
+              quantity: item.quantity,
+              subtotal: item.subtotal,
+              discount: item.discount
+            }))
           }
         }
       };
