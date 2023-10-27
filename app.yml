@@ -1,7 +1,7 @@
 meta:
   app_id: ocp_quickstart
   display_name: OCP Quickstart
-  version: 1.0.0-dev.4
+  version: 1.0.0-dev.5
   vendor: optimizely
   summary: Sync offline store orders and customer data into ODP
   support_url: https://www.acme.com/

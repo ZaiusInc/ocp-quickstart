@@ -37,8 +37,8 @@
     "@azure/arm-eventgrid": "^14.1.0",
     "@azure/identity": "^3.2.2",
     "@azure/storage-blob": "^12.14.0",
-    "@zaiusinc/app-sdk": "^1.2.4",
-    "@zaiusinc/node-sdk": "^1.0.0",
+    "@zaiusinc/app-sdk": "1.2.7",
+    "@zaiusinc/node-sdk": "1.0.1",
     "node-fetch": "^2.6.7"
   },
   "resolutions": {
