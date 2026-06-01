@@ -4,44 +4,26 @@
   "main": "dist/index.js",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "yarn && npx rimraf remove dist && npx tsc && npx ncp app.yml dist/app.yml && npx fse mkdirp src/schema && npx fse copy src/schema dist/schema",
+    "build": "yarn && npx rimraf remove dist && npx tsc && cpy app.yml dist && cpy --up 1 \"src/**/*.{yml,yaml}\" dist",
     "validate": "yarn build && yarn lint && yarn test && npx cross-env LOG_LEVEL=never node node_modules/@zaiusinc/app-sdk/dist/app/validation/runValidation.js",
-    "lint": "npx eslint src --ext ts",
-    "test": "npx jest --passWithNoTests"
+    "lint": "npx eslint src",
+    "test": "npx vitest run --passWithNoTests"
   },
   "devDependencies": {
-    "@atao60/fse-cli": "^0.1.7",
-    "@types/jest": "^29.0.0",
-    "@types/node": "^18.7.13",
-    "@types/node-fetch": "^2.6.2",
-    "@typescript-eslint/eslint-plugin": "^5.35.1",
-    "@typescript-eslint/eslint-plugin-tslint": "^5.35.1",
-    "@typescript-eslint/parser": "^5.0.0",
-    "@zaiusinc/eslint-config-presets": "^1.0.0",
-    "chalk": "^4.0.0",
+    "@types/node": "^22.15.17",
+    "@zaiusinc/eslint-config-presets": "^3.0.0",
+    "cpy-cli": "^6.0.0",
     "cross-env": "^7.0.3",
-    "dotenv": "^16.0.3",
-    "eslint": "^8.0.1",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^27.0.1",
-    "eslint-plugin-jsdoc": "^39.3.6",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
-    "eslint-plugin-react": "^7.31.1",
-    "jest": "^28.1.3",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^28.0.8",
-    "tslint": "^5.14.0",
-    "typescript": "^4.7.4"
+    "dotenv": "^16.5.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.8"
   },
   "dependencies": {
     "@azure/arm-eventgrid": "^14.1.0",
     "@azure/identity": "^3.2.2",
     "@azure/storage-blob": "^12.14.0",
-    "@zaiusinc/app-sdk": "1.2.7",
-    "@zaiusinc/node-sdk": "1.0.1",
-    "node-fetch": "^2.6.7"
-  },
-  "resolutions": {
-    "grpc-boom": "^3.0.11"
+    "@zaiusinc/app-sdk": "3.4.1",
+    "@zaiusinc/node-sdk": "3.0.0"
   }
 }
