@@ -10,7 +10,7 @@ export class StorageEventHandler extends App.Function {
     let event: StorageEvent;
     try {
       event = this.request.bodyJSON[0];
-    } catch (error) {
+    } catch {
       return new App.Response(400, 'Invalid request');
     }
 
